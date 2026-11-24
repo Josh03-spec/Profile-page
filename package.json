@@ -1,0 +1,19 @@
+{
+  "name": "pink-fashions-profile-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static profile page for Sheila Pink (Pink Fashions), Kampala, Uganda.",
+  "scripts": {
+    "start": "serve . -l 4173 --no-clipboard",
+    "lint:html": "html-validate index.html",
+    "lint:css": "stylelint index.html",
+    "check:assets": "node scripts/check-assets.mjs",
+    "check": "npm run lint:html && npm run lint:css && npm run check:assets"
+  },
+  "devDependencies": {
+    "html-validate": "^9.7.1",
+    "postcss-html": "^2.0.1",
+    "serve": "^14.2.4",
+    "stylelint": "^18.1.0"
+  }
+}

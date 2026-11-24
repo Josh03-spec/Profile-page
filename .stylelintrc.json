@@ -1,0 +1,19 @@
+{
+  "customSyntax": "postcss-html",
+  "rules": {
+    "declaration-property-value-no-unknown": true,
+    "property-no-unknown": true,
+    "function-no-unknown": true,
+    "declaration-block-no-duplicate-properties": [
+      true,
+      { "ignore": ["consecutive-duplicates-with-different-syntaxes"] }
+    ],
+    "no-duplicate-selectors": true,
+    "no-descending-specificity": null,
+    "color-no-invalid-hex": true,
+    "block-no-empty": true,
+    "shorthand-property-no-redundant-values": true,
+    "length-zero-no-unit": true,
+    "comment-no-empty": true
+  }
+}
