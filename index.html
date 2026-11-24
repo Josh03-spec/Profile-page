@@ -3,98 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page for Sheila Pink</title>
+    <title>Sheila Pink &mdash; Fashion Design, Photography &amp; Bulk Clothing in Kampala</title>
+    <meta name="description" content="Sheila Pink is a fashion designer, photographer and design consultant based in Kampala, Uganda. Design consultation, photography and videography, and bulk clothing production.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Social sharing. Replace with absolute URLs (https://your-domain/...) once the site is deployed. -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Sheila Pink &mdash; Fashion Design in Kampala">
+    <meta property="og:description" content="Fashion design, photography and videography, design consultation and bulk clothing production in Kampala, Uganda.">
+    <meta name="twitter:card" content="summary">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 1;
-            padding: 0;
-            background-image: url('./picbkgrnd.jpg');
+        :root {
+            --ink: #1b1b1b;
+            --muted: #5c5c5c;
+            --brand: #b3123f;
+            --line: #e8dee3;
+            --card: rgba(255, 255, 255, 0.95);
+            --radius: 16px;
+            --shadow: 0 8px 24px rgba(27, 27, 27, 0.12);
+            --gutter: clamp(16px, 5vw, 48px);
+            --measure: 960px;
         }
-        .header {
-            background-color: #333;
-            padding: 20px;
-            color: white;
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--ink);
+            background-color: #efe6ea;
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Visible keyboard focus everywhere. */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--brand);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            padding: 12px 20px;
+            background: var(--ink);
+            color: #fff;
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        .skip-link:focus {
+            left: 8px;
+            top: 8px;
+        }
+
+        .site-header {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--line);
+            padding: 16px var(--gutter);
             text-align: center;
         }
-        .container {
+
+        .logo {
+            display: inline-block;
+            width: min(320px, 78vw);
+            height: auto;
+        }
+
+        .layout {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 50px;
+            gap: 20px;
+            width: 100%;
+            max-width: var(--measure);
+            margin: 0 auto;
+            padding: var(--gutter) var(--gutter) 32px;
         }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: clamp(20px, 4vw, 36px);
+        }
+
+        .card > :first-child {
+            margin-top: 0;
+        }
+
+        .card > :last-child {
+            margin-bottom: 0;
+        }
+
+        /* Profile */
+        .profile {
+            text-align: center;
+        }
+
         .profile-pic {
             width: 150px;
             height: 150px;
+            object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 20px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 14px rgba(27, 27, 27, 0.18);
         }
+
+        h1 {
+            margin: 16px 0 4px;
+            font-size: clamp(1.6rem, 5vw, 2.1rem);
+            line-height: 1.2;
+        }
+
+        .tagline {
+            margin: 0;
+            color: var(--muted);
+        }
+
         .location {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0 0;
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            font-size: 0.95rem;
         }
-        .contacts {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 20px;
-            vertical-align:auto;
+
+        h2 {
+            margin: 0 0 16px;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--brand);
         }
-        .contacts a{
-            text-decoration: none;
-        }
+
+        /* Activities */
         .activities {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            width: 100%;
-        }
-        .activities ul {
-            list-style-type: none;
+            margin: 0;
             padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
         }
+
         .activities li {
-            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .activities li::before {
+            content: "";
+            flex: none;
+            width: 8px;
+            height: 8px;
+            margin-top: 0.55em;
+            border-radius: 50%;
+            background: var(--brand);
+        }
+
+        /* Mission */
+        .mission {
+            margin: 0;
+            padding-left: 16px;
+            border-left: 4px solid var(--brand);
+            font-style: italic;
+            color: #333;
+        }
+
+        /* Contacts */
+        .contacts {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+        }
+
+        .contacts a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 100%;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            color: inherit;
+            text-decoration: none;
+            background: #fff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .contacts a:hover {
+            border-color: var(--brand);
+            box-shadow: 0 4px 12px rgba(179, 18, 63, 0.15);
+        }
+
+        .icon {
+            flex: none;
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .contact-value {
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .site-footer {
+            padding: 8px var(--gutter) 40px;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        /* Keep footer text readable over the photo. */
+        .site-footer p {
+            display: inline-block;
+            margin: 0;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #3f3f3f;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .contacts a {
+                transition: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="pinklogo.png" alt="Brand Logo" width="350px" height="100px">
-    </div>
-    <div class="container">
-        <img src="Sheila.jpeg" alt="Profile Picture" class="profile-pic">
-        <h2>Sheila Pink</h2>
-        <div class="location">
-           <div> <img src="Location.png" <p>LOCATION <br> Kampala,UGANDA</p></div> 
-        </div>
-        <div class="activities">
-            <h3> <b>Main Activities:</b></h3>
-            <ul>
-                <li>- Fashion & Design</li>
-                <li>- Photography & Videography</li>
-                <li>- Design Consultation in latest  Fashion trends</li>
-                <li>- Bulk clothing production</li>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <img class="logo" src="logo.png" alt="Pink Fashions &mdash; fashion solutions for all" width="700" height="127">
+    </header>
+
+    <main id="main" class="layout">
+        <section class="card profile" aria-labelledby="profile-name">
+            <img class="profile-pic" src="sheila.jpg" alt="Sheila Pink in her tailoring studio in Kampala" width="183" height="183">
+            <h1 id="profile-name">Sheila Pink</h1>
+            <p class="tagline">Fashion design &middot; Photography &middot; Bulk clothing</p>
+            <p class="location">
+                <img class="icon" src="location.png" alt="" width="24" height="24" aria-hidden="true">
+                <span>Kampala, Uganda</span>
+            </p>
+        </section>
+
+        <section class="card" aria-labelledby="activities-title">
+            <h2 id="activities-title">Main activities</h2>
+            <ul class="activities">
+                <li>Fashion &amp; design</li>
+                <li>Photography &amp; videography</li>
+                <li>Design consultation in the latest fashion trends</li>
+                <li>Bulk clothing production</li>
             </ul>
-        </div>
-        <div>
-            <p>
-                <b>Our mission</b>
-            </p>
-             <p>
-                 <i>"We aim to deliver high-quality, affordable fashion to all, fostering a love of style and individual expression"</i>
-            </p>
-            </div>
-    </div>
-    <div class="contacts">
-        <a href="mailto:sheilapink@gmail.com"><img src="Gmail.png" alt="Gmail Icon" class="icon">Mail us at:  <br> sheilapink@gmail.com</a>
-        <a href="https://wa.me/2567449934"><img src="Whatsapp.png" alt="WhatsApp Icon" class="icon">WhatsApp: <br> +2567449934</a>
-        <a href="https://twitter.com/sheilapink"><img src="Twitter.png" alt="Twitter Icon" class="icon">Find us on Twitter: <br> @sheilapink</a>
-        <a href="tel:+2567449934"><img src="Telephone.png" alt="Telephone Icon" class="icon"> Call us on:  <br> +2567449934</a>
-    </div>
-    </div>
+        </section>
+
+        <section class="card" aria-labelledby="mission-title">
+            <h2 id="mission-title">Our mission</h2>
+            <blockquote class="mission">
+                <p>We aim to deliver high-quality, affordable fashion to all, fostering a love of style and individual expression.</p>
+            </blockquote>
+        </section>
+
+        <section class="card" aria-labelledby="contact-title">
+            <h2 id="contact-title">Get in touch</h2>
+            <ul class="contacts">
+                <li>
+                    <a href="mailto:sheilapink@gmail.com">
+                        <img class="icon" src="gmail.png" alt="" width="24" height="24" aria-hidden="true" loading="lazy" decoding="async">
+                        <span class="contact-text">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">sheilapink@gmail.com</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wa.me/2567449934" target="_blank" rel="noopener noreferrer">
+                        <img class="icon" src="whatsapp.png" alt="" width="24" height="24" aria-hidden="true" loading="lazy" decoding="async">
+                        <span class="contact-text">
+                            <span class="contact-label">WhatsApp</span>
+                            <span class="contact-value">+256&nbsp;744&nbsp;9934</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/sheilapink" target="_blank" rel="noopener noreferrer">
+                        <img class="icon" src="twitter.png" alt="" width="24" height="24" aria-hidden="true" loading="lazy" decoding="async">
+                        <span class="contact-text">
+                            <span class="contact-label">Twitter / X</span>
+                            <span class="contact-value">@sheilapink</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tel:+2567449934">
+                        <img class="icon" src="telephone.png" alt="" width="24" height="24" aria-hidden="true" loading="lazy" decoding="async">
+                        <span class="contact-text">
+                            <span class="contact-label">Telephone</span>
+                            <span class="contact-value">+256&nbsp;744&nbsp;9934</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Sheila Pink &middot; Pink Fashions, Kampala, Uganda</p>
+    </footer>
 </body>
 </html>
